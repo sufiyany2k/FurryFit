@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FurryFit.Views.Forms.SampleView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:dashboard="clr-namespace:FurryFit.ViewModels.Dashboard;assembly=FurryFit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <dashboard:HealthCareViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <!--<StackLayout BackgroundColor="White">
+          <Label Text="Hello Xamarin.Forms!" />
+      </StackLayout>-->
+        <StackLayout
+            Margin="0"
+            Padding="8"
+            BackgroundColor="Gray"
+            Spacing="0">
+            <Label Text="Hello Xamarin.Forms! Trial" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

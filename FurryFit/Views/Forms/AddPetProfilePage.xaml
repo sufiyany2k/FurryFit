@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FurryFit.Views.Forms.AddPetProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:behaviours="clr-namespace:FurryFit.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:control="clr-namespace:FurryFit.Controls"
+    xmlns:converter="clr-namespace:FurryFit.Converters"
+    xmlns:generic="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
+    xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    BackgroundColor="{DynamicResource Gray-White}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="16"
+                BackgroundColor="White"
+                Spacing="0">
+
+                <!--  To display the Avatar with add icon  -->
+                <badge:SfBadgeView
+                    Padding="0"
+                    HeightRequest="90"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="90">
+                    <badge:SfBadgeView.Content>
+
+                        <!--  Avatar view to display the profile picture  -->
+                        <sfavatar:SfAvatarView
+                            Padding="13"
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            BorderWidth="0"
+                            ContentType="Custom"
+                            CornerRadius="45"
+                            HeightRequest="90"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="90">
+                            <sfavatar:SfAvatarView.ImageSource>
+                                <FontImageSource
+                                    FontFamily="{StaticResource FontIcons}"
+                                    Glyph="{StaticResource AvatarIcon}"
+                                    Size="29"
+                                    Color="{DynamicResource Gray-600}" />
+                            </sfavatar:SfAvatarView.ImageSource>
+                        </sfavatar:SfAvatarView>
+                    </badge:SfBadgeView.Content>
+
+                    <!--  Badge setting to display the add icon above the profile picture  -->
+                    <badge:SfBadgeView.BadgeSettings>
+                        <badge:BadgeSetting
+                            BackgroundColor="{DynamicResource Gray-100}"
+                            BadgeAnimation="None"
+                            BadgeIcon="Add"
+                            BadgePosition="BottomRight"
+                            BadgeType="None"
+                            FontSize="15"
+                            Stroke="{DynamicResource Gray-White}"
+                            StrokeWidth="4"
+                            TextColor="{DynamicResource Gray-600}"
+                            TextPadding="7"
+                            Offset="-5,-10" />
+                    </badge:SfBadgeView.BadgeSettings>
+                </badge:SfBadgeView>
+
+                <!--  Displaying the label of Add profile picture below to the badgeview  -->
+                <Label
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="Add Profile Picture"
+                    TextColor="{DynamicResource Gray-700}" />
+                <Label
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Black"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End" />
+                <Label
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Black"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End" />
+                <!--  name entry with border  -->
+
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Pet Name">
+                    <Entry Placeholder="Pet Name" />
+                </textInputLayout:SfTextInputLayout>
+
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Pet Breed">
+                    <combobox:SfComboBox
+                        x:Name="comboBox"
+                        FontAttributes="None"
+                        HeightRequest="45"
+                        IsEditableMode="True"
+                        TextSize="14">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <generic:List x:TypeArguments="x:String">
+                                <x:String>Affenpinscher</x:String>
+                                <x:String>Afghan Hound</x:String>
+                                <x:String>Airedale Terrier</x:String>
+                                <x:String>Akbash</x:String>
+                                <x:String>Akita</x:String>
+                                <x:String>Alaskan Malamute</x:String>
+                                <x:String>Anatolian Shepherd Dog</x:String>
+                                <x:String>Australian Cattle Dog</x:String>
+                                <x:String>Australian Kelpie</x:String>
+                                <x:String>Australian Shepherd</x:String>
+                                <x:String>Australian Silky Terrier</x:String>
+                                <x:String>Australian Terrier</x:String>
+                                <x:String>Barbet</x:String>
+                                <x:String>Basenji</x:String>
+                                <x:String>Basset Griffon Vendeen (grand)</x:String>
+                                <x:String>Basset Griffon Vendeen (Petit)</x:String>
+                                <x:String>Basset Hound</x:String>
+                                <x:String>Beagle</x:String>
+                                <x:String>Bearded Collie</x:String>
+                                <x:String>Beauceron</x:String>
+                                <x:String>Bedlington Terrier</x:String>
+                                <x:String>Belgian Malinois</x:String>
+                                <x:String>Belgian Shepherd Dog</x:String>
+                                <x:String>Belgian Tervuren</x:String>
+                                <x:String>Bernese Mountain Dog</x:String>
+                                <x:String>Bichon Frise</x:String>
+                                <x:String>Black and Tan Coonhound</x:String>
+                                <x:String>Bloodhound</x:String>
+                                <x:String>Border Collie</x:String>
+                                <x:String>Border Terrier</x:String>
+                                <x:String>Borzoi</x:String>
+                                <x:String>Boston Terrier</x:String>
+                                <x:String>Bouvier des Flandres</x:String>
+                                <x:String>Boxer</x:String>
+                                <x:String>Bracco Italiano</x:String>
+                                <x:String>Briard</x:String>
+                                <x:String>Brittany</x:String>
+                                <x:String>Bull Terrier</x:String>
+                                <x:String>Bullmastiff</x:String>
+                                <x:String>Cairn Terrier</x:String>
+                                <x:String>Canaan Dog</x:String>
+                                <x:String>Cane Corso</x:String>
+                                <x:String>Cardigan Welsh Corgi</x:String>
+                                <x:String>Cavalier King Charles Spaniel</x:String>
+                                <x:String>Cavachon</x:String>
+                                <x:String>Cesky Terrier</x:String>
+                                <x:String>Chihuahua</x:String>
+                                <x:String>Chinese Crested</x:String>
+                                <x:String>Chinese Shar-Pei</x:String>
+                                <x:String>Chipoo</x:String>
+                                <x:String>Chow Chow</x:String>
+                                <x:String>Chug</x:String>
+                                <x:String>Clumber Spaniel</x:String>
+                                <x:String>Cocker Spaniel</x:String>
+                                <x:String>Cockapoo</x:String>
+                                <x:String>Collie</x:String>
+                                <x:String>Coton De Tulear</x:String>
+                                <x:String>Dachshund Standard</x:String>
+                                <x:String>Dachshund Miniature</x:String>
+                                <x:String>Dalmatian</x:String>
+                                <x:String>Dandie Dinmont Terrier</x:String>
+                                <x:String>Doberman Pinscher</x:String>
+                                <x:String>Dogue de Bordeauxs</x:String>
+                                <x:String>English Bulldog</x:String>
+                                <x:String>English Foxhound</x:String>
+                                <x:String>English Setter</x:String>
+                                <x:String>English Springer Spaniel</x:String>
+                                <x:String>English Toy Terrier</x:String>
+                                <x:String>Estrela Mountain Dog</x:String>
+                                <x:String>Finnish Spitz</x:String>
+                                <x:String>Fox Terrier (Smooth)</x:String>
+                                <x:String>Fox Terrier (Wire)</x:String>
+                                <x:String>French Bulldog</x:String>
+                                <x:String>German Pinscher</x:String>
+                                <x:String>German Shepherd</x:String>
+                                <x:String>German Shorthaired Pointer</x:String>
+                                <x:String>German Wirehaired Pointer</x:String>
+                                <x:String>Giant Schnauzer</x:String>
+                                <x:String>Glen of Imaal Terrier</x:String>
+                                <x:String>Goldendoodle (Miniature)</x:String>
+                                <x:String>Goldendoodle (Standard)</x:String>
+                                <x:String>Gordon Setter</x:String>
+                                <x:String>Great Dane</x:String>
+                                <x:String>Great Pyrenees</x:String>
+                                <x:String>Great Swiss Mountain Dog</x:String>
+                                <x:String>Greyhound</x:String>
+                                <x:String>Harrier</x:String>
+                                <x:String>Havanese</x:String>
+                                <x:String>Hungarian Vizsla</x:String>
+                                <x:String>Ibizan Hound</x:String>
+                                <x:String>Irish Setter</x:String>
+                                <x:String>Irish Terrier</x:String>
+                                <x:String>Irish Water Spaniel</x:String>
+                                <x:String>Irish Wolfhound</x:String>
+                                <x:String>Italian Greyhound</x:String>
+                                <x:String>Italian Spinone</x:String>
+                                <x:String>Jack Russell Terrier</x:String>
+                                <x:String>Japanese Chin</x:String>
+                                <x:String>Jug</x:String>
+                                <x:String>Keeshond</x:String>
+                                <x:String>Kerry Blue Terrier</x:String>
+                                <x:String>King Charles Spaniel</x:String>
+                                <x:String>Kooikerhondjes</x:String>
+                                <x:String>Labradoodle miniature</x:String>
+                                <x:String>Labradoodle standard</x:String>
+                                <x:String>Laekenois</x:String>
+                                <x:String>Lakeland Terrier</x:String>
+                                <x:String>Lakeadoodle</x:String>
+                                <x:String>Lancashire Heeler</x:String>
+                                <x:String>Leonburger</x:String>
+                                <x:String>Lhasa Apso</x:String>
+                                <x:String>Löwchen</x:String>
+                                <x:String>Lurcher</x:String>
+                                <x:String>Maltese</x:String>
+                                <x:String>Maltipoo</x:String>
+                                <x:String>Manchester Terrier</x:String>
+                                <x:String>Maremma Sheepdog</x:String>
+                                <x:String>Mastiff</x:String>
+                                <x:String>Miniature Bull Terrier</x:String>
+                                <x:String>Miniature Pinscher</x:String>
+                                <x:String>Miniature Schnauzer</x:String>
+                                <x:String>Neapolitan Mastiff</x:String>
+                                <x:String>Newfoundland</x:String>
+                                <x:String>Norfolk Terrier</x:String>
+                                <x:String>Norwegian Buhunds</x:String>
+                                <x:String>Norwegian Elkhound</x:String>
+                                <x:String>Norwich Terrier</x:String>
+                                <x:String>Old English Sheepdog</x:String>
+                                <x:String>Otterhound</x:String>
+                                <x:String>Papillon</x:String>
+                                <x:String>Parson Russell Terrier</x:String>
+                                <x:String>Patterdale Terrier</x:String>
+                                <x:String>Peekapoo</x:String>
+                                <x:String>Pekingese</x:String>
+                                <x:String>Pembroke Welsh Corgi</x:String>
+                                <x:String>Petit Basset Griffon Vendeen</x:String>
+                                <x:String>Pharaoh Hound</x:String>
+                                <x:String>Pit Bull</x:String>
+                                <x:String>Plott</x:String>
+                                <x:String>Pointer (English)</x:String>
+                                <x:String>Polish Lowland Sheepdog</x:String>
+                                <x:String>Pomapoo</x:String>
+                                <x:String>Pomeranian</x:String>
+                                <x:String>Poodle (Toy)</x:String>
+                                <x:String>Poodle (Miniature)</x:String>
+                                <x:String>Poodle (Standard)</x:String>
+                                <x:String>Portuguese Water Dog</x:String>
+                                <x:String>Pug</x:String>
+                                <x:String>Puggle</x:String>
+                                <x:String>Puli</x:String>
+                                <x:String>Rat Terrier</x:String>
+                                <x:String>Retriever (Curly-Coated)</x:String>
+                                <x:String>Retriever (Flat-coated)</x:String>
+                                <x:String>Retriever (Golden)</x:String>
+                                <x:String>Retriever (Labrador)</x:String>
+                                <x:String>Retriever (Nova Scotia Duck Tolling)</x:String>
+                                <x:String>Redbone Coonhounds</x:String>
+                                <x:String>Rhodesian Ridgeback</x:String>
+                                <x:String>Rottweiler</x:String>
+                                <x:String>Russian Black Terrier</x:String>
+                                <x:String>Saint Bernard</x:String>
+                                <x:String>Saluki</x:String>
+                                <x:String>Samoyed</x:String>
+                                <x:String>Schipperke</x:String>
+                                <x:String>Schnoodle (Miniature)</x:String>
+                                <x:String>Schnoodle (Standard)</x:String>
+                                <x:String>Scottish Deerhound</x:String>
+                                <x:String>Scottish Terrier</x:String>
+                                <x:String>Sealyham Terrier</x:String>
+                                <x:String>Shar Pei</x:String>
+                                <x:String>Shetland Sheepdog</x:String>
+                                <x:String>Shiba Inu</x:String>
+                                <x:String>Shih Tzu</x:String>
+                                <x:String>Siberian Husky</x:String>
+                                <x:String>Silky Terrier</x:String>
+                                <x:String>Skye Terrier</x:String>
+                                <x:String>Snorkie</x:String>
+                                <x:String>Staffordshire Bull Terrier</x:String>
+                                <x:String>Schnauzer</x:String>
+                                <x:String>Spaniel (Field)</x:String>
+                                <x:String>Spanish Water Dog</x:String>
+                                <x:String>Springer Spaniel (English)</x:String>
+                                <x:String>Sussex Spaniel</x:String>
+                                <x:String>Swedish Vallhund</x:String>
+                                <x:String>Texas Heeler</x:String>
+                                <x:String>Thai Ridgeback</x:String>
+                                <x:String>Tibetan Mastiff</x:String>
+                                <x:String>Tibetan Spaniel</x:String>
+                                <x:String>Tibetan Terrier</x:String>
+                                <x:String>Weimaraner</x:String>
+                                <x:String>Welsh Springer Spaniel</x:String>
+                                <x:String>Welsh Terrier</x:String>
+                                <x:String>West Highland White Terrier</x:String>
+                                <x:String>Wheaten Terrier</x:String>
+                                <x:String>Whippet</x:String>
+                                <x:String>Xoloitzcuintle (Mexican hairless)</x:String>
+                                <x:String>Yorkie-Poo</x:String>
+                                <x:String>Yorkshire Terrier</x:String>
+
+                            </generic:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                    </combobox:SfComboBox>
+                </textInputLayout:SfTextInputLayout>
+
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Pet's Birth date">
+                    <DatePicker x:Name="DatePicker" />
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Sex">
+                    <combobox:SfComboBox
+                        x:Name="comboBoxSex"
+                        FontAttributes="None"
+                        HeightRequest="45"
+                        IsEditableMode="False"
+                        TextSize="14">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <generic:List x:TypeArguments="x:String">
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </generic:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                    </combobox:SfComboBox>
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Neutered or Spayed">
+                    <combobox:SfComboBox
+                        x:Name="comboBoxSpayed"
+                        FontAttributes="None"
+                        HeightRequest="45"
+                        IsEditableMode="False"
+                        TextSize="14">
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <generic:List x:TypeArguments="x:String">
+                                <x:String>Yes</x:String>
+                                <x:String>No</x:String>
+                            </generic:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                    </combobox:SfComboBox>
+                </textInputLayout:SfTextInputLayout>
+                <!--<Label
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text="Sex"
+                    TextColor="Black"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End" />
+                <border:SfBorder
+                    x:Name="SfBorderSex"
+                    Margin="0,8"
+                    Padding="12,8"
+                    BorderColor="#ced2d9"
+                    CornerRadius="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <buttons:SfCheckBox
+                            x:Name="chkBoxMale"
+                            Grid.Column="0"
+                            CheckedColor="Green"
+                            CornerRadius="25"
+                            Focused="ChkBoxMale_OnFocused"
+                            StateChanged="ChkBoxMale_OnStateChanged"
+                            Text="Male" />
+                        <buttons:SfCheckBox
+                            x:Name="chkBoxFemale"
+                            Grid.Column="1"
+                            CheckedColor="Green"
+                            CornerRadius="25"
+                            Focused="ChkBoxFemale_OnFocused"
+                            StateChanged="ChkBoxFemale_OnStateChanged"
+                            Text="Female" />
+                    </Grid>
+                </border:SfBorder>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text="Neutered or Spayed"
+                    TextColor="Black"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End" />
+                <border:SfBorder Style="{StaticResource FormBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <buttons:SfCheckBox
+                            x:Name="chkBoxYes"
+                            Grid.Column="0"
+                            CheckedColor="Green"
+                            CornerRadius="25"
+                            StateChanged="ChkBoxYes_OnStateChanged"
+                            Text="Yes" />
+                        <buttons:SfCheckBox
+                            x:Name="chkBoxNo"
+                            Grid.Column="1"
+                            CheckedColor="Green"
+                            CornerRadius="25"
+                            StateChanged="ChkBoxNo_OnStateChanged"
+                            Text="No" />
+                    </Grid>
+                </border:SfBorder>-->
+                <textInputLayout:SfTextInputLayout
+                    ContainerType="Outlined"
+                    HelperText="weight units can be changed in settings"
+                    Hint="Weight (lbs)"
+                    ShowHelperText="True">
+                    <Entry Keyboard="Numeric" Placeholder="weight (lbs)" />
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout
+                    ContainerType="Outlined"
+                    HelperText="weight units can be changed in settings"
+                    Hint="Exercise Goal (min)"
+                    ShowHelperText="False">
+                    <Entry Keyboard="Numeric" Placeholder="Exercise Goal (min)" />
+                </textInputLayout:SfTextInputLayout>
+
+
+
+
+
+                <Grid HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Save"
+                        WidthRequest="200" />
+                    <buttons:SfButton
+                        x:Name="btnCancel"
+                        Grid.Column="1"
+                        Margin="0,16,0,0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Cancel"
+                        Clicked="BtnCancel_OnClicked"
+                        WidthRequest="200" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

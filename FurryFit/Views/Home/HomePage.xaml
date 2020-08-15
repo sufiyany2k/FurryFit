@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FurryFit.Views.Home.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:converters="clr-namespace:FurryFit.Converters;assembly=FurryFit"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid BackgroundColor="#1aa1d6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="600" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackLayout
+            Grid.Row="0"
+            BackgroundColor="#1aa1d6"
+            Orientation="Horizontal">
+            <Button
+                x:Name="hamburgerButton"
+                BackgroundColor="#1aa1d6"
+                Clicked="hamburgerButton_Clicked"
+                FontSize="20"
+                HeightRequest="50"
+                HorizontalOptions="Start"
+                Image="hamburgericon"
+                WidthRequest="50" />
+            <Label
+                x:Name="headerLabel"
+                BackgroundColor="#1aa1d6"
+                FontAttributes="Bold"
+                FontFamily="Arial"
+                FontSize="20"
+                HeightRequest="50"
+                HorizontalTextAlignment="Center"
+                Text="FurryFit"
+                TextColor="White"
+                VerticalTextAlignment="Center" />
+        </StackLayout>
+        <navigationdrawer:SfNavigationDrawer
+            x:Name="navigationDrawer"
+            Grid.Row="1"
+            DrawerFooterHeight="25"
+            DrawerHeaderHeight="180"
+            DrawerWidth="300"
+            Transition="Reveal">
+            <navigationdrawer:SfNavigationDrawer.ContentView>
+                <Grid x:Name="mainContentView" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="600" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label
+                        x:Name="contentLabel"
+                        Grid.Row="0"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        Text="Content View"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                </Grid>
+            </navigationdrawer:SfNavigationDrawer.ContentView>
+            <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+                <!--<Frame x:Name="circleFrame" BorderColor="Black"   Grid.Row="1" HasShadow="False" Padding="0" Margin="0" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" IsClippedToBounds="True" HeightRequest="100" WidthRequest="100">
+                        <Frame.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Single">
+                                <On Platform="iOS" Value="50"/>
+                                <On Platform="Android" Value="50"/>
+                            </OnPlatform>
+                        </Frame.CornerRadius>
+                        <Image Source="furryfiticon.png"
+                               HeightRequest="150"
+                               Margin="10,10,10,10"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               IsOpaque="True"
+                        />
+                    </Frame>-->
+                <Grid BackgroundColor="#1aa1d6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="120" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <badge:SfBadgeView
+                        Grid.Row="1"
+                        Padding="0"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="100">
+                        <badge:SfBadgeView.Content>
+
+                            <!--  ImageSource="dp.png"  -->
+                            <!--  Avatar view to display the profile picture  -->
+                            <sfavatar:SfAvatarView
+                                Padding="0"
+                                BackgroundColor="{DynamicResource Gray-200}"
+                                BorderWidth="2"
+                                ContentType="Custom"
+                                CornerRadius="50"
+                                HeightRequest="100"
+                                HorizontalOptions="Center"
+                                ImageSource="dp.png"
+                                VerticalOptions="Center"
+                                WidthRequest="100" />
+                        </badge:SfBadgeView.Content>
+
+                        <!--  Badge setting to display the add icon above the profile picture  -->
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSetting
+                                BackgroundColor="{DynamicResource Gray-100}"
+                                BadgeAnimation="None"
+                                BadgeIcon="None"
+                                BadgePosition="BottomRight"
+                                BadgeType="None"
+                                FontSize="15"
+                                Stroke="{DynamicResource Gray-White}"
+                                StrokeWidth="4"
+                                TextColor="{DynamicResource Gray-600}"
+                                TextPadding="7"
+                                Offset="-5,-10" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <Label
+                        Grid.Row="2"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="John Smith"
+                        TextColor="White" />
+                </Grid>
+            </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+            <navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+                <Grid BackgroundColor="Cornsilk">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Padding="0,5,5,5"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        HorizontalOptions="End"
+                        HorizontalTextAlignment="End"
+                        Text="FurryFit ver 1.1.0.0"
+                        TextColor="Red" />
+                </Grid>
+            </navigationdrawer:SfNavigationDrawer.DrawerFooterView>
+            <navigationdrawer:SfNavigationDrawer.DrawerContentView>
+                <ListView
+                    x:Name="listView"
+                    BackgroundColor="Cornsilk"
+                    ItemSelected="listView_ItemSelected"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout HeightRequest="40">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image
+                                            Grid.Column="0"
+                                            Margin="10,7,0,0"
+                                            HeightRequest="35"
+                                            HorizontalOptions="Start"
+                                            Source="{Binding MenuIcon}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="35" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="10,7,0,0"
+                                            FontSize="16"
+                                            Text="{Binding MenuItemName}"
+                                            TextColor="Black"
+                                            VerticalTextAlignment="Center" />
+                                        <syncfusion:SfSwitch
+                                            Grid.Column="2"
+                                            Padding="0,0,5,0"
+                                            HorizontalOptions="End"
+                                            IsOn="True"
+                                            IsVisible="{Binding ShowToggleSwitch}"
+                                            StateChanged="SfSwitch_OnStateChanged"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <!--<ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Add Pet/s</x:String>
+                            <x:String>Add Vet/s</x:String>
+                            <x:String>Add Insurance Company</x:String>
+                            <x:String>My Details</x:String>
+                            <x:String>Sync Data (ON)</x:String>
+                            <x:String>Log out</x:String>
+                        </x:Array>
+                    </ListView.ItemsSource>-->
+                </ListView>
+            </navigationdrawer:SfNavigationDrawer.DrawerContentView>
+        </navigationdrawer:SfNavigationDrawer>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FurryFit.Views.Forms.AddInsCompanyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converters="clr-namespace:FurryFit.Converters;assembly=FurryFit"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="16"
+                BackgroundColor="White"
+                Spacing="0">
+
+
+                <Label
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Black"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End" />
+                <Label
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Black"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="End" />
+                <!--  name entry with border  -->
+
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Company Name">
+                    <Entry />
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Address">
+                    <Editor AutoSize="TextChanges" />
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
+                    <Entry Keyboard="Telephone" />
+                </textInputLayout:SfTextInputLayout>
+
+
+
+                <Grid HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Save"
+                        WidthRequest="200" />
+                    <buttons:SfButton
+                        x:Name="btnCancel"
+                        Clicked="BtnCancel_OnClicked"
+                        Grid.Column="1"
+                        Margin="0,16,0,0"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Cancel"
+                        WidthRequest="200" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FurryFit.Views.Forms.KCNumberPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:avatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:badgeView="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converters="clr-namespace:FurryFit.Converters;assembly=FurryFit"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="16"
+                BackgroundColor="White"
+                Spacing="0">
+
+                <!--  To display the Avatar with add icon  -->
+                <badgeView:SfBadgeView
+                    Padding="0"
+                    HeightRequest="90"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="90">
+                    <badgeView:SfBadgeView.Content>
+
+                        <!--  Avatar view to display the profile picture  -->
+                        <avatarView:SfAvatarView
+                            Padding="13"
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            BorderWidth="0"
+                            ContentType="Custom"
+                            CornerRadius="45"
+                            HeightRequest="90"
+                            HorizontalOptions="Center"
+                            ImageSource="furryfitlogo.png"
+                            VerticalOptions="Center"
+                            WidthRequest="90">
+                            <!--<avatarView:SfAvatarView.ImageSource>
+                                <FontImageSource
+                                    FontFamily="{StaticResource FontIcons}"
+                                    Glyph="{StaticResource AvatarIcon}"
+                                    Size="29"
+                                    Color="{DynamicResource Gray-600}" />
+                            </avatarView:SfAvatarView.ImageSource>-->
+                        </avatarView:SfAvatarView>
+                    </badgeView:SfBadgeView.Content>
+
+                    <!--  Badge setting to display the add icon above the profile picture  -->
+                    <badgeView:SfBadgeView.BadgeSettings>
+                        <badgeView:BadgeSetting
+                            BackgroundColor="{DynamicResource Gray-100}"
+                            BadgeAnimation="None"
+                            BadgeIcon="None"
+                            BadgePosition="BottomRight"
+                            BadgeType="None"
+                            FontSize="15"
+                            Stroke="{DynamicResource Gray-White}"
+                            StrokeWidth="4"
+                            TextColor="{DynamicResource Gray-600}"
+                            TextPadding="7"
+                            Offset="-5,-10" />
+                    </badgeView:SfBadgeView.BadgeSettings>
+                </badgeView:SfBadgeView>
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="[Pet Name] - Additional Information" />
+                <Label />
+                <Label />
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] Kennel Club Name">
+                    <Entry />
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Registration Number">
+                    <Entry />
+                </textInputLayout:SfTextInputLayout>
+                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
+                    <Entry Keyboard="Telephone" />
+                </textInputLayout:SfTextInputLayout>
+
+                <Grid HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <buttons:SfButton
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Save"
+                        WidthRequest="200" />
+                    <buttons:SfButton
+                        Grid.Column="1"
+                        Margin="0,16,0,0"
+                        Clicked="SfButton_OnClicked"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Cancel"
+                        WidthRequest="200" />
+                </Grid>
+
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
