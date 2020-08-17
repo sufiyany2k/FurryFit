@@ -8,7 +8,7 @@ using Syncfusion.XForms.iOS.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
 using Foundation;
 using UIKit;
 
@@ -33,6 +33,7 @@ using Syncfusion.XForms.iOS.TreeView;
 using Syncfusion.XForms.iOS.BadgeView;
 using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.Pickers.iOS;
+using Syncfusion.SfCarousel.XForms.iOS;
 
 namespace FurryFit.iOS
 {
@@ -92,10 +93,16 @@ namespace FurryFit.iOS
 
             SfCheckBoxRenderer.Init();
 			SfTimePickerRenderer.Init();
-			
-			LoadApplication(new App());
+            InitializeNLog();
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+        private void InitializeNLog()
+        {
+            Assembly assembly = this.GetType().Assembly;
+            string assemblyName = assembly.GetName().Name;
+            new Helpers.LogService().Initialize(assembly, assemblyName);
         }
     }
 }

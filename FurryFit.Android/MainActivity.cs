@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Reflection;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -20,9 +20,15 @@ namespace FurryFit.Android
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            InitializeNLog();
             LoadApplication(new App());
         }
-
+        private void InitializeNLog()
+        {
+            Assembly assembly = this.GetType().Assembly;
+            string assemblyName = assembly.GetName().Name;
+            new Helpers.LogService().Initialize(assembly, assemblyName);
+        }
 
     }
 }

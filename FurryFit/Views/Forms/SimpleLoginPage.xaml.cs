@@ -1,4 +1,5 @@
 ﻿using System;
+using FurryFit.Helpers;
 using FurryFit.Views.Dashboard;
 using FurryFit.Views.Home;
 using FurryFit.Views.Settings;
@@ -49,14 +50,28 @@ namespace FurryFit.Views.Forms
 
         }
 
+        
         private void FacebookLoginButton_OnClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started" );
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+
+                App.Logger.Error(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + ex.Message);
+
+            }
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
+            
+            
         }
 
         private void LoginButton_OnClicked(object sender, EventArgs e)
         {
-
+            
             App.isUserLoggedIn = true;
             //App.Current.MainPage= new HomePage();
             App.Current.MainPage = new MDPage();

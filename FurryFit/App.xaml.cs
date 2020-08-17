@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FurryFit.Helpers;
 using FurryFit.Views.Dashboard;
 using FurryFit.Views.Forms;
 using FurryFit.Views.Home;
@@ -13,6 +14,8 @@ namespace FurryFit
     {
         public static string BaseImageUrl { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
         public static bool isUserLoggedIn;
+        public static NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzAwNTg4QDMxMzgyZTMyMmUzMEVWZHNVTjdyeUdSanFnVW5nNlZBQWoyVDlwYzFSRnl6ZGxEQkxQcDRCeFE9");

@@ -100,6 +100,7 @@
     <BundleResource Include="Resources\Montserrat-Regular.ttf" />
     <BundleResource Include="Resources\Montserrat-SemiBold.ttf" />
     <BundleResource Include="Resources\Roboto-Medium.ttf" />
+    <EmbeddedResource Include="nlog.config" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

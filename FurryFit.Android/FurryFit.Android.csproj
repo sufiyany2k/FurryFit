@@ -66,6 +66,7 @@
     <AndroidAsset Include="Assets\Montserrat-Regular.ttf" />
     <AndroidAsset Include="Assets\Montserrat-SemiBold.ttf" />
     <AndroidAsset Include="Assets\Roboto-Medium.ttf" />
+    <EmbeddedResource Include="nlog.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
