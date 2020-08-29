@@ -33,18 +33,23 @@
                         <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
 
-                    <badgeView:SfBadgeView
+                    <badgeView:SfBadgeView 
                         Grid.Row="1"
                         Padding="0"
                         HeightRequest="100"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
                         WidthRequest="100">
+                        <badgeView:SfBadgeView.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </badgeView:SfBadgeView.GestureRecognizers>
                         <badgeView:SfBadgeView.Content>
 
                             <!--  ImageSource="dp.png"  -->
                             <!--  Avatar view to display the profile picture  -->
-                            <avatarView:SfAvatarView
+                            <avatarView:SfAvatarView x:Name="dpPic"
                                 Padding="0"
                                 BackgroundColor="{DynamicResource Gray-200}"
                                 BorderWidth="2"
@@ -56,6 +61,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="100" />
                         </badgeView:SfBadgeView.Content>
+                        
 
                         <!--  Badge setting to display the add icon above the profile picture  -->
                         <badgeView:SfBadgeView.BadgeSettings>

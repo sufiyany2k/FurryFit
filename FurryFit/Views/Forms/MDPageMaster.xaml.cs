@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,8 +10,12 @@ using System.Threading.Tasks;
 using FurryFit.Models;
 using FurryFit.Views.Dashboard;
 using FurryFit.Views.Home;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using Image = Xamarin.Forms.Image;
 
 namespace FurryFit.Views.Forms
 {
@@ -84,7 +89,7 @@ namespace FurryFit.Views.Forms
 
             //MainMenuItems.Add(mi);
 
-
+            dpPic.ImageSource = ImageSource.FromFile("@drawable\\icon.png");
             BindingContext = new MDPageMasterViewModel();
             
             ListView = MenuItemsListView;
@@ -118,6 +123,35 @@ namespace FurryFit.Views.Forms
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
+        }
+
+        private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            //await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Permission Error", "Unable to select Photo", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                CustomPhotoSize = 50,
+                CompressionQuality = 50,
+
+            });
+            if (file == null)
+                return;
+
+
+            dpPic.ImageSource = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+
         }
     }
 }

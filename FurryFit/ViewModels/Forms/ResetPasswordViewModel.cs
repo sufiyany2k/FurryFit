@@ -7,7 +7,7 @@ namespace FurryFit.ViewModels.Forms
     /// ViewModel for reset password page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ResetPasswordViewModel : BaseViewModel
+    public class ResetPasswordViewModel : SfBaseViewModel
     {
         #region Fields
 

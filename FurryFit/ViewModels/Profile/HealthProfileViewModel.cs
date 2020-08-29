@@ -8,7 +8,7 @@ namespace FurryFit.ViewModels.Profile
     /// ViewModel for health profile page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class HealthProfileViewModel : BaseViewModel
+    public class HealthProfileViewModel : SfBaseViewModel
     {
         #region Fields
 

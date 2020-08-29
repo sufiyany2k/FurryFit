@@ -6,7 +6,7 @@ namespace FurryFit.ViewModels.Forms
     /// ViewModel for login page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : SfBaseViewModel
     {
         #region Fields
 

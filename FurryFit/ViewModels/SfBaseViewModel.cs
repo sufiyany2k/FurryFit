@@ -13,7 +13,7 @@ namespace FurryFit.ViewModels
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class BaseViewModel : INotifyPropertyChanged
+    public class SfBaseViewModel : INotifyPropertyChanged
     {
         private string _validationError;
         public string ValidationError

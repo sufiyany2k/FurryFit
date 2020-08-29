@@ -13,7 +13,7 @@ namespace FurryFit.ViewModels.Settings
     /// ViewModel for Setting page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class SettingViewModel : BaseViewModel
+    public class SettingViewModel : SfBaseViewModel
     {
         #region Constructor
 

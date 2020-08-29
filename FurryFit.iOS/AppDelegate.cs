@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Foundation;
+using Plugin.Media;
 using UIKit;
 
 using Syncfusion.SfSchedule.XForms.iOS;
@@ -52,6 +53,7 @@ namespace FurryFit.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //await CrossMedia.Current.Initialize();
             global::Xamarin.Forms.Forms.Init();
             SfCardViewRenderer.Init();
             SfListViewRenderer.Init();
@@ -104,5 +106,7 @@ namespace FurryFit.iOS
             string assemblyName = assembly.GetName().Name;
             new Helpers.LogService().Initialize(assembly, assemblyName);
         }
+
+
     }
 }

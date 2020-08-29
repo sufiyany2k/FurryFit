@@ -11,7 +11,7 @@ namespace FurryFit.ViewModels.Dashboard
     /// ViewModel for stock overview page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class HealthCareViewModel : BaseViewModel
+    public class HealthCareViewModel : SfBaseViewModel
     {
         #region Field
 

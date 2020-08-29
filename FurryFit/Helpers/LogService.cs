@@ -18,7 +18,7 @@ namespace FurryFit.Helpers
             if (Device.RuntimePlatform == Device.iOS)
                 resourcePrefix = "FurryFit.iOS";
             else if (Device.RuntimePlatform == Device.Android)
-                resourcePrefix = "FurryFit.Android";
+                resourcePrefix = "FurryFit.AndroidXam";
             else
                 throw new Exception("Could not initialize Logger: Unknonw Platform");
             //var location = $"{assemblyName}.NLog.config";

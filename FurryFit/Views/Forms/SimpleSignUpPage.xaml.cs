@@ -26,15 +26,23 @@ namespace FurryFit.Views.Forms
 
         private void RegisterButton_OnClicked(object sender, EventArgs e)
         {
+
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started");
             try
             {
                 validateEntries();
             }
             catch (Exception ex)
             {
+                App.Logger.Error(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + ex.Message);
                 DisplayAlert("Error", ex.Message, "ok");
-                
+
             }
+            finally
+            {
+                App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
+            }
+
         }
 
         private void validateEntries()

@@ -53,10 +53,33 @@ namespace FurryFit.Views.Forms
         
         private void FacebookLoginButton_OnClicked(object sender, EventArgs e)
         {
-            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started" );
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started");
             try
             {
                 throw new NotImplementedException();
+
+            }
+            catch (Exception ex)
+            {
+                App.Logger.Error(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + ex.Message);
+            }
+            finally
+            {
+                App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
+            }
+
+        }
+
+        private void LoginButton_OnClicked(object sender, EventArgs e)
+        {
+
+
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started");
+            try
+            {
+                App.isUserLoggedIn = true;
+                App.Current.MainPage = new MDPage();
+
             }
             catch (Exception ex)
             {
@@ -64,27 +87,32 @@ namespace FurryFit.Views.Forms
                 App.Logger.Error(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + ex.Message);
 
             }
-            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
-            
-            
-        }
+            finally
+            {
 
-        private void LoginButton_OnClicked(object sender, EventArgs e)
-        {
-            
-            App.isUserLoggedIn = true;
-            //App.Current.MainPage= new HomePage();
-            App.Current.MainPage = new MDPage();
-
-            //var page = (Page)Activator.CreateInstance(DashboardContent);
-            //page.Title = "Home";
-
+                App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
+            }
+                
             
         }
 
         private void ForgotPassword_OnTapped(object sender, EventArgs e)
         {
-            App.Current.MainPage = new SimpleForgotPasswordPage();
+
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started");
+            try
+            {
+                App.Current.MainPage = new SimpleForgotPasswordPage();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.Error(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + ex.Message);
+            }
+            finally
+            {
+                App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
+            }
+
         }
     }
 }

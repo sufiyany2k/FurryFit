@@ -29,7 +29,6 @@ namespace FurryFit.Services
                 //var response = await httpClient.GetStringAsync(apiPath);
                 string jsonInString = JsonConvert.SerializeObject(user);
                 httpClient.DefaultRequestHeaders.Add("accept","application/json");
-                //httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
                 var response =await httpClient.PostAsync(apiPath, new StringContent(jsonInString, Encoding.UTF8, "application/json")).ConfigureAwait(false);
                 if (response.StatusCode == HttpStatusCode.Created)
                 {

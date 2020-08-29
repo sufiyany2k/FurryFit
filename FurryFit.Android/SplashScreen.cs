@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace FurryFit.Android
+namespace FurryFit.AndroidXam
 {
     [Activity(Label = "Furry Fit",     Icon="@drawable/furryfiticon", Theme="@style/Theme.Splash", MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 

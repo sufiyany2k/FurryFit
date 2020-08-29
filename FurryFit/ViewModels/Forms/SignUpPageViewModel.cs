@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using FurryFit.Models.DBEntities;
+using FurryFit.Repository;
+using FurryFit.Repository.Interface;
 using FurryFit.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -135,7 +137,23 @@ namespace FurryFit.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            throw new Exception("LoginClicked");
+
+            App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Started");
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                App.Logger.Error(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + ex.Message);
+                //DisplayAlert("Error", ex.Message, "ok");
+
+            }
+            finally
+            {
+                App.Logger.Info(this.GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " - Completed");
+            }
+
             // Do something
         }
 
@@ -147,19 +165,40 @@ namespace FurryFit.ViewModels.Forms
         {
             try
             {
-                this.Name = "Sufiyan";
-                this.Password = "aaa";
-                this.ConfirmPassword = this.Password;
-                this.Email = "sufiyany2k@hotmail.com";
+                //this.Name = "Sufiyan";
+                //this.Password = "aaa";
+                //this.ConfirmPassword = this.Password;
+                //this.Email = "sufiyany2k@hotmail.com";
                 if (!ValidateFields())
                     return;
-                
-                RemoteServices rs = new RemoteServices();
-                var newUser=rs.CreateUser(new User
+                UserRepository userRepository = new UserRepository();
+                var user = new User
                 {
-                    AuthenticationId = null, AuthenticationTypeId = 1,DisplayPicture = null, FirstName = Name,Id= null,IsActive = true, IsVerified = true, LastName = Name,
-                    LoginId = Email, Password = this.Password,RegisteredDateTime = DateTime.Now
-                });
+                    AuthenticationId = null,
+                    AuthenticationTypeId = 1,
+                    DisplayPicture = null,
+                    FirstName = Name,
+                    RemoteId = "60b074ff-5dd8-4bef-a2c4-065ed44ce7b6",
+                    IsActive = true,
+                    IsVerified = true,
+                    LastName = Name,
+                    LoginId = Email,
+                    Password = this.Password,
+                    RegisteredDateTime = DateTime.Now
+                };
+                var isSuccess = userRepository.AddUserAsync(user);
+
+                var userResponse = userRepository.GetUserByIdAsync(user.Id);
+                if (userResponse != null)
+                {
+                    var xname = userResponse.Result.FirstName;
+                }
+                //RemoteServices rs = new RemoteServices();
+                //var newUser=rs.CreateUser(new User
+                //{
+                //    AuthenticationId = null, AuthenticationTypeId = 1,DisplayPicture = null, FirstName = Name,Id= null,IsActive = true, IsVerified = true, LastName = Name,
+                //    LoginId = Email, Password = this.Password,RegisteredDateTime = DateTime.Now
+                //});
             }
             catch (Exception ex)
             {

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+    xmlns:controls="clr-namespace:FurryFit.Controls;assembly=FurryFit"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -16,169 +17,178 @@
             Text="Furry Fit" />
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout BackgroundColor="White">
-                <Grid Padding="10,10,10,10">
-                    <carousel:SfCarousel
-                        x:Name="carousel"
-                        BackgroundColor="White"
-                        HeightRequest="100"
-                        ItemHeight="100"
-                        ItemSpacing="10"
-                        ItemWidth="100"
-                        RotationAngle="45"
-                        SelectionChanged="Carousel_OnSelectionChanged"
-                        WidthRequest="400" />
-                </Grid>
-                <Label />
-                <Grid Padding="0,10,10,0" WidthRequest="400">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="200" />
-                    </Grid.ColumnDefinitions>
+        <StackLayout>
+
+            <ScrollView>
+                <StackLayout BackgroundColor="White">
+                    <Grid Padding="10,10,10,10">
+                        <carousel:SfCarousel
+                            x:Name="carousel"
+                            BackgroundColor="White"
+                            HeightRequest="100"
+                            ItemHeight="100"
+                            ItemSpacing="10"
+                            ItemWidth="100"
+                            RotationAngle="45"
+                            SelectionChanged="Carousel_OnSelectionChanged"
+                            WidthRequest="400" />
+                    </Grid>
+                    <Label />
+                    <Grid Padding="0,10,10,0" WidthRequest="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <buttons:SfButton
+                            x:Name="SfButton"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="Beige"
+                            BackgroundImage="dashboard.png"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            ShowIcon="True"
+                            TextColor="Black"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Fitness Dashboard" />
+                        <buttons:SfButton
+                            x:Name="SfButton1"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BackgroundColor="Beige"
+                            BackgroundImage="weight.png"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            ShowIcon="True"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="70" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Weight Management" />
+
+
+                        <buttons:SfButton
+                            x:Name="SfButton2"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            BackgroundColor="Beige"
+                            BackgroundImage="reminder.png"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Reminders" />
+                        <buttons:SfButton
+                            x:Name="SfButton3"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            BackgroundColor="Beige"
+                            BackgroundImage="diary.png"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Pet Diary" />
+
+                        <buttons:SfButton
+                            x:Name="SfButton4"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            BackgroundColor="Beige"
+                            BackgroundImage="walk.png"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Fetch Walk" />
+                        <buttons:SfButton
+                            x:Name="SfButton5"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            BackgroundColor="Beige"
+                            BackgroundImage="walk.png"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            TextColor="Black"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Walk History" />
+
+                        <buttons:SfButton
+                            x:Name="SfButton6"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            BackgroundColor="Beige"
+                            BackgroundImage="info.png"
+                            Clicked="SfButton6_OnClicked"
+                            CornerRadius="20"
+                            HeightRequest="70"
+                            HorizontalOptions="Center"
+                            ShowIcon="True"
+                            TextColor="Black"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="Additional Information" />
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout>
+                <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
-                    <buttons:SfButton
-                        x:Name="SfButton"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        BackgroundColor="Beige"
-                        BackgroundImage="dashboard.png"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        ShowIcon="True"
-                        TextColor="Black"
-                        WidthRequest="75" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Fitness Dashboard" />
-                    <buttons:SfButton
-                        x:Name="SfButton1"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        BackgroundColor="Beige"
-                        BackgroundImage="weight.png"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        ShowIcon="True"
-                        TextColor="Black"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="75" />
-
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Weight Management" />
-
-
-                    <buttons:SfButton
-                        x:Name="SfButton2"
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        BackgroundColor="Beige"
-                        BackgroundImage="reminder.png"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        TextColor="Black"
-                        WidthRequest="75" />
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Reminders" />
-                    <buttons:SfButton
-                        x:Name="SfButton3"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        BackgroundColor="Beige"
-                        BackgroundImage="diary.png"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        TextColor="Black"
-                        WidthRequest="75" />
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Pet Diary" />
-
-                    <buttons:SfButton
-                        x:Name="SfButton4"
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        BackgroundColor="Beige"
-                        BackgroundImage="walk.png"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        TextColor="Black"
-                        WidthRequest="75" />
-                    <Label
-                        Grid.Row="5"
-                        Grid.Column="0"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Fetch Walk" />
-                    <buttons:SfButton
-                        x:Name="SfButton5"
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        BackgroundColor="Beige"
-                        BackgroundImage="walk.png"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        TextColor="Black"
-                        WidthRequest="75" />
-                    <Label
-                        Grid.Row="5"
-                        Grid.Column="1"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Walk History" />
-
-                    <buttons:SfButton
-                        x:Name="SfButton6"
-                        Grid.Row="6"
-                        Grid.Column="0"
-                        BackgroundColor="Beige"
-                        BackgroundImage="info.png"
-                        Clicked="SfButton6_OnClicked"
-                        CornerRadius="20"
-                        HeightRequest="75"
-                        HorizontalOptions="Center"
-                        ShowIcon="True"
-                        TextColor="Black"
-                        WidthRequest="75" />
-                    <Label
-                        Grid.Row="7"
-                        Grid.Column="0"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="Additional Information" />
-
-
+                    <controls:AdControlView Grid.Row="0" BackgroundColor="Bisque" />
                 </Grid>
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
