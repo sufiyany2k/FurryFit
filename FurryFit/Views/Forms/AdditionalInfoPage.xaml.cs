@@ -22,6 +22,11 @@ namespace FurryFit.Views.Forms
             petAdditionInfoVm = new PetAdditionInfoVM(petId);
             this.BindingContext = petAdditionInfoVm;
 
+            PetProfileViewModel petProfile = new PetProfileViewModel(petId);
+            dpPic.ImageSource = petProfile.PetImagePath.Value;
+            lblHeader.Text = $"{petProfile.Name.Value} - Additional Info";
+
+
         }
 
         private async void SfButton_OnClicked(object sender, EventArgs e)

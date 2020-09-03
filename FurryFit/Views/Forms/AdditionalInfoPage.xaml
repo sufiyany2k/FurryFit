@@ -6,6 +6,7 @@
     xmlns:avatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
     xmlns:badgeView="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:FurryFit.Controls;assembly=FurryFit"
     xmlns:converters="clr-namespace:FurryFit.Converters;assembly=FurryFit"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -20,125 +21,138 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout
-                Padding="16"
-                BackgroundColor="White"
-                Spacing="0">
+        <StackLayout>
+            <ScrollView>
+                <StackLayout
+                    Padding="16"
+                    BackgroundColor="White"
+                    Spacing="0">
 
-                <!--  To display the Avatar with add icon  -->
-                <badgeView:SfBadgeView
-                    Padding="0"
-                    HeightRequest="90"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="90">
-                    <badgeView:SfBadgeView.Content>
+                    <!--  To display the Avatar with add icon  -->
+                    <badgeView:SfBadgeView
+                        Padding="0"
+                        HeightRequest="90"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="90">
+                        <badgeView:SfBadgeView.Content>
 
-                        <!--  Avatar view to display the profile picture  -->
-                        <avatarView:SfAvatarView
-                            Padding="13"
-                            BackgroundColor="{DynamicResource Gray-200}"
-                            BorderWidth="0"
-                            ContentType="Custom"
-                            CornerRadius="45"
-                            HeightRequest="90"
-                            HorizontalOptions="Center"
-                            ImageSource="furryfitlogo.png"
-                            VerticalOptions="Center"
-                            WidthRequest="90">
-                            <!--<avatarView:SfAvatarView.ImageSource>
+                            <!--  Avatar view to display the profile picture  -->
+                            <avatarView:SfAvatarView
+                                x:Name="dpPic"
+                                Padding="0"
+                                BackgroundColor="{DynamicResource Gray-200}"
+                                BorderWidth="0"
+                                ContentType="Custom"
+                                CornerRadius="45"
+                                HeightRequest="90"
+                                HorizontalOptions="Center"
+                                ImageSource="furryfitlogo.png"
+                                VerticalOptions="Center"
+                                WidthRequest="90">
+                                <!--<avatarView:SfAvatarView.ImageSource>
                                 <FontImageSource
                                     FontFamily="{StaticResource FontIcons}"
                                     Glyph="{StaticResource AvatarIcon}"
                                     Size="29"
                                     Color="{DynamicResource Gray-600}" />
                             </avatarView:SfAvatarView.ImageSource>-->
-                        </avatarView:SfAvatarView>
-                    </badgeView:SfBadgeView.Content>
+                            </avatarView:SfAvatarView>
+                        </badgeView:SfBadgeView.Content>
 
-                    <!--  Badge setting to display the add icon above the profile picture  -->
-                    <badgeView:SfBadgeView.BadgeSettings>
-                        <badgeView:BadgeSetting
-                            BackgroundColor="{DynamicResource Gray-100}"
-                            BadgeAnimation="None"
-                            BadgeIcon="None"
-                            BadgePosition="BottomRight"
-                            BadgeType="None"
-                            FontSize="15"
-                            Stroke="{DynamicResource Gray-White}"
-                            StrokeWidth="4"
-                            TextColor="{DynamicResource Gray-600}"
-                            TextPadding="7"
-                            Offset="-5,-10" />
-                    </badgeView:SfBadgeView.BadgeSettings>
-                </badgeView:SfBadgeView>
-                <Label
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="[Pet Name] - Additional Information" />
-                <Label />
-                <Label />
+                        <!--  Badge setting to display the add icon above the profile picture  -->
+                        <badgeView:SfBadgeView.BadgeSettings>
+                            <badgeView:BadgeSetting
+                                BackgroundColor="{DynamicResource Gray-100}"
+                                BadgeAnimation="None"
+                                BadgeIcon="None"
+                                BadgePosition="BottomRight"
+                                BadgeType="None"
+                                FontSize="15"
+                                Stroke="{DynamicResource Gray-White}"
+                                StrokeWidth="4"
+                                TextColor="{DynamicResource Gray-600}"
+                                TextPadding="7"
+                                Offset="-5,-10" />
+                        </badgeView:SfBadgeView.BadgeSettings>
+                    </badgeView:SfBadgeView>
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text="[Pet Name] - Additional Information" 
+                        x:Name="lblHeader"/>
+                    <Label />
+                    <Label />
 
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] is insured with">
-                    <Entry Text="{Binding Insurer.Value}" />
-                </textInputLayout:SfTextInputLayout>
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Policy Number">
-                    <Entry Text="{Binding PolicyNumber.Value}" />
-                </textInputLayout:SfTextInputLayout>
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
-                    <Entry Keyboard="Telephone" Text="{Binding InsurerContactNumber.Value}" />
-                </textInputLayout:SfTextInputLayout>
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Policy Expiry Date">
-                    <DatePicker
-                        Date="{Binding PolicyExpiryDate.Value}"
-                        MaximumDate="12/31/2030"
-                        MinimumDate="01/01/2019" />
-                </textInputLayout:SfTextInputLayout>
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] Vet">
-                    <Entry Text="{Binding Vet.Value}" />
-                </textInputLayout:SfTextInputLayout>
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
-                    <Entry Keyboard="Telephone" Text="{Binding VetContactNumber.Value}" />
-                </textInputLayout:SfTextInputLayout>
-                <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet name Microchip Number]">
-                    <Entry Text="{Binding ChipNumber.Value}" />
-                </textInputLayout:SfTextInputLayout>
-                <buttons:SfButton
-                    Margin="0,16,0,0"
-                    BackgroundColor="CadetBlue"
-                    Clicked="SfButton_OnClicked"
-                    CornerRadius="5"
-                    HorizontalOptions="End"
-                    Style="{StaticResource SfFlatButtonStyle1}"
-                    Text="KC Number"
-                    WidthRequest="200" />
-
-                <Grid HorizontalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="100" />
-                    </Grid.ColumnDefinitions>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] is insured with">
+                        <Entry Text="{Binding Insurer.Value}" />
+                    </textInputLayout:SfTextInputLayout>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Policy Number">
+                        <Entry Text="{Binding PolicyNumber.Value}" />
+                    </textInputLayout:SfTextInputLayout>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
+                        <Entry Keyboard="Telephone" Text="{Binding InsurerContactNumber.Value}" />
+                    </textInputLayout:SfTextInputLayout>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Policy Expiry Date">
+                        <DatePicker
+                            Date="{Binding PolicyExpiryDate.Value}"
+                            MaximumDate="12/31/2030"
+                            MinimumDate="01/01/2019" />
+                    </textInputLayout:SfTextInputLayout>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] Vet">
+                        <Entry Text="{Binding Vet.Value}" />
+                    </textInputLayout:SfTextInputLayout>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
+                        <Entry Keyboard="Telephone" Text="{Binding VetContactNumber.Value}" />
+                    </textInputLayout:SfTextInputLayout>
+                    <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet name Microchip Number]">
+                        <Entry Text="{Binding ChipNumber.Value}" />
+                    </textInputLayout:SfTextInputLayout>
                     <buttons:SfButton
-                        Grid.Column="0"
                         Margin="0,16,0,0"
-                        Command="{Binding SaveCommand}"
-                        HorizontalOptions="Center"
-                        Style="{StaticResource SfButtonStyle}"
-                        Text="Save"
+                        BackgroundColor="CadetBlue"
+                        Clicked="SfButton_OnClicked"
+                        CornerRadius="5"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SfFlatButtonStyle1}"
+                        Text="KC Number"
                         WidthRequest="200" />
-                    <buttons:SfButton
-                        Grid.Column="1"
-                        Margin="0,16,0,0"
-                        Clicked="SfButton1_OnClicked"
-                        HorizontalOptions="Center"
-                        Style="{StaticResource SfButtonStyle}"
-                        Text="Cancel"
-                        WidthRequest="200" />
+
+                    <Grid HorizontalOptions="CenterAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <buttons:SfButton
+                            Grid.Column="0"
+                            Margin="0,16,0,0"
+                            Command="{Binding SaveCommand}"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Save"
+                            WidthRequest="200" />
+                        <buttons:SfButton
+                            Grid.Column="1"
+                            Margin="0,16,0,0"
+                            Clicked="SfButton1_OnClicked"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Cancel"
+                            WidthRequest="200" />
+                    </Grid>
+
+
+                </StackLayout>
+            </ScrollView>
+            <StackLayout VerticalOptions="End">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <controls:AdControlView Grid.Row="0" BackgroundColor="Bisque" />
                 </Grid>
-
-
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

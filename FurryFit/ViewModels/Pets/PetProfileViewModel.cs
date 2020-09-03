@@ -40,6 +40,44 @@ namespace FurryFit.ViewModels.Pets
             AddValidations();
         }
 
+
+        public PetProfileViewModel(int petId)
+        {
+            _id = new ValidatableObject<int>();
+            _petName = new ValidatableObject<string>();
+            _petBreed = new ValidatableObject<string>();
+            _petDOB = new ValidatableObject<DateTime>();
+            _petSex = new ValidatableObject<string>();
+            _petNeutered = new ValidatableObject<string>();
+            _petWeight = new ValidatableObject<int>();
+            _petExerciseGoal = new ValidatableObject<int>();
+            _petImagePath = new ValidatableObject<string>();
+            _petImageStream = new ValidatableObject<Stream>();
+            _petDOB.Value = DateTime.Now;
+            _petWeight.Value = 0;
+            _isBusy = false;
+            pet = new Pet();
+            PetRepository petRepository = new PetRepository();
+            pet = petRepository.GetPetWithIdAsync(petId);
+
+            if (pet != null)
+            {
+                _id.Value  = pet.Id;
+                _petName.Value = pet.Name;
+                _petBreed.Value = pet.Breed;
+                _petDOB.Value = pet.DOB;
+                _petSex.Value = pet.Sex;
+                _petNeutered.Value = pet.Neutered;
+                _petWeight.Value = pet.Weight;
+                _petExerciseGoal.Value = pet.Weight;
+                _petImagePath.Value = pet.DPPath;
+            }
+
+            AddValidations();
+
+        }
+
+
         private ValidatableObject<int> _id;
         private Pet pet;
         private ValidatableObject<string> _petName;

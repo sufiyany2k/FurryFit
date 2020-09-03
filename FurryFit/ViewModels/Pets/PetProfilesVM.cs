@@ -34,5 +34,7 @@ namespace FurryFit.ViewModels.Pets
             _dummyPet.PetImagePath.Value = "furryfiticon.png";
             Pets.Add(_dummyPet);
         }
+
+
     }
 }

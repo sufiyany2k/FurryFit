@@ -18,6 +18,9 @@ namespace FurryFit.Views.Forms
             InitializeComponent();
             petKennelInfoVm = new PetKennelInfoVM(petId);
             this.BindingContext = petKennelInfoVm;
+            PetProfileViewModel petProfile = new PetProfileViewModel(petId);
+            dpPic.ImageSource = petProfile.PetImagePath.Value;
+            lblHeader.Text = $"{petProfile.Name.Value} - Additional Info";
         }
 
         private async void SfButton_OnClicked(object sender, EventArgs e)
