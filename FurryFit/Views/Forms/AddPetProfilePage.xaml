@@ -14,6 +14,7 @@
     xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
     xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
     xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     BackgroundColor="{DynamicResource Gray-White}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,7 +25,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
+
         <StackLayout>
+            <xForms:SfBusyIndicator
+                x:Name="busyindicator"
+                Title="Saving..."
+                AnimationType="Ball"
+                BackgroundColor="BlanchedAlmond"
+                IsBusy="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                TextColor="White" />
             <StackLayout>
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
@@ -37,7 +47,7 @@
 
                 <StackLayout
                     Padding="16"
-                    BackgroundColor="White"
+                    BackgroundColor="Beige"
                     Spacing="0">
 
                     <!--  To display the Avatar with add icon  -->
@@ -47,26 +57,41 @@
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
                         WidthRequest="90">
+                        <badge:SfBadgeView.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_OnTapped" />
+                        </badge:SfBadgeView.GestureRecognizers>
                         <badge:SfBadgeView.Content>
 
                             <!--  Avatar view to display the profile picture  -->
                             <sfavatar:SfAvatarView
-                                Padding="13"
+                                x:Name="dpPic"
+                                Padding="0"
                                 BackgroundColor="{DynamicResource Gray-200}"
-                                BorderWidth="0"
+                                BorderWidth="2"
                                 ContentType="Custom"
                                 CornerRadius="45"
                                 HeightRequest="90"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"
                                 WidthRequest="90">
-                                <sfavatar:SfAvatarView.ImageSource>
-                                    <FontImageSource
+                                <sfavatar:SfAvatarView
+                                    Padding="0"
+                                    BackgroundColor="Beige"
+                                    BorderColor="Beige"
+                                    BorderWidth="2"
+                                    ContentType="Custom"
+                                    CornerRadius="50"
+                                    HeightRequest="100"
+                                    HorizontalOptions="Center"
+                                    ImageSource="{Binding PetImagePath.Value}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="100">
+                                    <!--<FontImageSource
                                         FontFamily="{StaticResource FontIcons}"
                                         Glyph="{StaticResource AvatarIcon}"
                                         Size="29"
-                                        Color="{DynamicResource Gray-600}" />
-                                </sfavatar:SfAvatarView.ImageSource>
+                                        Color="{DynamicResource Gray-600}" />-->
+                                </sfavatar:SfAvatarView>
                             </sfavatar:SfAvatarView>
                         </badge:SfBadgeView.Content>
 
@@ -75,7 +100,7 @@
                             <badge:BadgeSetting
                                 BackgroundColor="{DynamicResource Gray-100}"
                                 BadgeAnimation="None"
-                                BadgeIcon="Add"
+                                BadgeIcon="None"
                                 BadgePosition="BottomRight"
                                 BadgeType="None"
                                 FontSize="15"
@@ -541,11 +566,11 @@
                         <buttons:SfButton
                             Grid.Column="0"
                             Margin="0,16,0,0"
+                            Command="{Binding SaveCommand}"
                             HorizontalOptions="Center"
                             Style="{StaticResource SfButtonStyle}"
                             Text="Save"
-                            WidthRequest="200" 
-                            Command="{Binding SaveCommand}"/>
+                            WidthRequest="200" />
                         <buttons:SfButton
                             x:Name="btnCancel"
                             Grid.Column="1"

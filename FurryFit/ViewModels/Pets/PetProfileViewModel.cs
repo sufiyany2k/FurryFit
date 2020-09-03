@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
+using FurryFit.Models.PetProfile;
+using FurryFit.Repository;
 using FurryFit.Validations;
 using FurryFit.ViewModels.Base;
 using Xamarin.Forms;
@@ -14,8 +17,10 @@ namespace FurryFit.ViewModels.Pets
     [Preserve(AllMembers = true)]
     public class PetProfileViewModel : ExtendedBindableObject
     {
+        //public List<Pet> pets { get; set; }
         public PetProfileViewModel()
         {
+            _id = new ValidatableObject<int>();
             _petName = new ValidatableObject<string>();
             _petBreed= new ValidatableObject<string>();
             _petDOB= new ValidatableObject<DateTime>();
@@ -24,12 +29,19 @@ namespace FurryFit.ViewModels.Pets
             _petWeight= new ValidatableObject<int>();
             _petExerciseGoal= new ValidatableObject<int>();
             _petImagePath = new ValidatableObject<string>();
+            _petImageStream = new ValidatableObject<Stream>();
             _petDOB.Value=DateTime.Now;
             _petWeight.Value = 9;
-            _petImagePath.Value = string.Empty;
+            _isBusy = false;
+            //_petImagePath.Value = string.Empty;
+            pet = new Pet();
+            //pets = GetPets();
+            
             AddValidations();
         }
 
+        private ValidatableObject<int> _id;
+        private Pet pet;
         private ValidatableObject<string> _petName;
         private ValidatableObject<string> _petBreed;
         private ValidatableObject<DateTime> _petDOB;
@@ -37,8 +49,9 @@ namespace FurryFit.ViewModels.Pets
         private ValidatableObject<string> _petNeutered;
         private ValidatableObject<int> _petWeight;
         private ValidatableObject<int> _petExerciseGoal;
-        private ValidatableObject<string> _petImagePath; 
-
+        private ValidatableObject<string> _petImagePath;
+        private ValidatableObject<Stream> _petImageStream;
+        private bool _isBusy;
         public ValidatableObject<int> ExerciseGoal
         {
             get
@@ -53,6 +66,21 @@ namespace FurryFit.ViewModels.Pets
             }
         }
 
+        public ValidatableObject<int> Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+
+                RaisePropertyChanged(() => Id);
+            }
+        }
+
+
         public ValidatableObject<string> PetImagePath
         {
             get
@@ -64,6 +92,19 @@ namespace FurryFit.ViewModels.Pets
                 _petImagePath = value;
 
                 RaisePropertyChanged(() => PetImagePath);
+            }
+        }
+        public ValidatableObject<Stream> PetImageStream
+        {
+            get
+            {
+                return _petImageStream;
+            }
+            set
+            {
+                _petImageStream = value;
+
+                RaisePropertyChanged(() => PetImageStream);
             }
         }
 
@@ -81,7 +122,15 @@ namespace FurryFit.ViewModels.Pets
         }
 
 
-
+        public bool IsBusy
+        {
+            get { return _isBusy;}
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(()=> IsBusy);
+            }
+        } 
 
         public ValidatableObject<DateTime> DOB
         {
@@ -158,16 +207,72 @@ namespace FurryFit.ViewModels.Pets
         public ICommand ValidatePetExerciseGoal => new Command(() => _petExerciseGoal.Validate());
         public ICommand SaveCommand => new Command(() => Save());
 
-
-        protected void Save()
+        protected async void Save()
         {
-            if (ValidateObject())
-                App.Current.MainPage.DisplayAlert("Validation","All Ok","OK");
-            else
+            IsBusy = true;
+            try
             {
-                App.Current.MainPage.DisplayAlert("Validation", "Errors during validation", "OK");
+
+                if (ValidateObject())
+                {
+                    await App.Current.MainPage.DisplayAlert("Validation", "All Ok", "OK");
+
+                    PetRepository petRepository = new PetRepository();
+                    pet.Name = Name.Value;
+                    pet.Breed = Breed.Value;
+                    pet.DOB = DOB.Value;
+                    pet.Sex = Sex.Value;
+                    pet.Neutered = Neutered.Value;
+                    pet.Weight = Weight.Value;
+                    pet.ExerciseGoal = ExerciseGoal.Value;
+
+                    if (PetImagePath.Value != string.Empty)
+                    {
+                        CopyDPToApplicationFolder();
+                        //pet.DisplayPicture = GetBytesFromImageStream(PetImageStream.Value);
+                    }
+
+                    pet.DPPath = PetImagePath.Value;
+                    bool result = false;
+                    if (Id.Value == null || Id.Value <= 0)
+                    {
+                        result = petRepository.AddPetAsync(pet);
+                        Id.Value = pet.Id;
+                    }
+                    else if (Id.Value > 0)
+                    {
+                        pet.Id = Id.Value;
+                        result = petRepository.UpdatePetAsync(pet);
+                        //Id.Value = pet.Id;
+                    }
+
+                    if (result)
+                        await App.Current.MainPage.DisplayAlert("Data Saved", "All Ok", "OK");
+                }
+
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Validation", "Errors during validation", "OK");
+                }
+
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
+
+        private List<Pet> GetPets()
+        {
+            PetRepository petRepository = new PetRepository();
+            return petRepository.GetPetsAsync();
+        }
+
 
 
         private bool ValidateObject()
@@ -185,10 +290,57 @@ namespace FurryFit.ViewModels.Pets
 
         }
 
+        private void CopyDPToApplicationFolder()
+        {
+            string fileName = Path.GetFileName(_petImagePath.Value);
+
+            var dirToCreate = Path.Combine(App.imageCopyPath, "PetDPs");
+            if (!Directory.Exists(dirToCreate))
+            {
+                Directory.CreateDirectory(dirToCreate);
+            }
+            string destFolder = Path.Combine(dirToCreate, fileName);
+            if (!PetImagePath.Value.Equals(destFolder))
+            {
+                System.IO.File.Copy(PetImagePath.Value, destFolder, true);
+                PetImagePath.Value = destFolder;
+            }
+        }
 
 
+        private byte[] GetBytesFromImageStream(Stream stream)
+        {
+            try
+            {
+                byte[] imageByte;
+                System.IO.FileStream fileStream = new FileStream(PetImagePath.Value, FileMode.Open);
+                Stream imageStream = fileStream;
+                BinaryReader br = new BinaryReader(imageStream, Encoding.Default, true);
+                imageByte = br.ReadBytes((int)imageStream.Length);
 
-    private void AddValidations()
+                CopyDPToApplicationFolder();
+
+                return imageByte;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        private Stream GetImageStreamFromBytes(byte[] byteArray)
+        {
+            try
+            {
+                return new MemoryStream(byteArray);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        private void AddValidations()
         {
             _petName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Enter Pet Name" });
             _petBreed.Validations.Add(new IsNotNullOrEmptyRule<string>{ValidationMessage = "Select Pet's Breed"});

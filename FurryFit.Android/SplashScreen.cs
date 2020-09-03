@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace FurryFit.AndroidXam
 {
-    [Activity(Label = "Furry Fit",     Icon="@drawable/furryfiticon", Theme="@style/Theme.Splash", MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Furry Fit",     Icon="@drawable/furryfiticon", Theme="@style/Theme.Splash", MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.User)]
 
     public class SplashScreen : Activity
     {
@@ -33,7 +33,7 @@ namespace FurryFit.AndroidXam
 
         async void StartApp()
         {
-            await Task.Delay(2000);
+            //await Task.Delay(2000);
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }

@@ -80,13 +80,13 @@
                 <Label />
                 <Label />
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] Kennel Club Name">
-                    <Entry />
+                    <Entry Text="{Binding KennelClubName.Value}"/>
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Registration Number">
-                    <Entry />
+                    <Entry Text="{Binding KennelRegistrationNumber.Value}"/>
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
-                    <Entry Keyboard="Telephone" />
+                    <Entry Keyboard="Telephone" Text="{Binding KennelContactNumber.Value}"/>
                 </textInputLayout:SfTextInputLayout>
 
                 <Grid HorizontalOptions="CenterAndExpand">
@@ -100,7 +100,7 @@
                         HorizontalOptions="Center"
                         Style="{StaticResource SfButtonStyle}"
                         Text="Save"
-                        WidthRequest="200" />
+                        WidthRequest="200" Command="{Binding SaveCommand}"/>
                     <buttons:SfButton
                         Grid.Column="1"
                         Margin="0,16,0,0"

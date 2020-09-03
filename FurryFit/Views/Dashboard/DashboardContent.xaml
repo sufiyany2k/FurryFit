@@ -3,6 +3,8 @@
     x:Class="FurryFit.Views.Dashboard.DashboardContent"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:avatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:badgeView="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
     xmlns:controls="clr-namespace:FurryFit.Controls;assembly=FurryFit"
@@ -16,28 +18,72 @@
             HorizontalTextAlignment="Start"
             Text="Furry Fit" />
     </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="itemTemplate">
+                <!--<Image Aspect="AspectFit" Source="{Binding .PetImagePath.Value}" />-->
+                <badgeView:SfBadgeView
+                    Padding="0"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="100">
+                    <badgeView:SfBadgeView.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_OnTapped" />
+                    </badgeView:SfBadgeView.GestureRecognizers>
+
+                    <avatarView:SfAvatarView
+                        x:Name="AvatarView"
+                        Padding="0"
+                        BackgroundColor="Beige"
+                        BorderColor="Beige"
+                        BorderWidth="2"
+                        ContentType="Custom"
+                        CornerRadius="50"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        ImageSource="{Binding PetImagePath.Value}"
+                        VerticalOptions="Center"
+                        WidthRequest="100">
+                        <!--<avatarView:SfAvatarView.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="AvatarView_OnTapped" />
+                        </avatarView:SfAvatarView.GestureRecognizers>-->
+                    </avatarView:SfAvatarView>
+                </badgeView:SfBadgeView>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
 
-            <ScrollView>
-                <StackLayout BackgroundColor="White">
+            <ScrollView VerticalOptions="StartAndExpand">
+                <StackLayout>
                     <Grid Padding="10,10,10,10">
                         <carousel:SfCarousel
                             x:Name="carousel"
-                            BackgroundColor="White"
                             HeightRequest="100"
                             ItemHeight="100"
                             ItemSpacing="10"
+                            ItemTemplate="{StaticResource itemTemplate}"
                             ItemWidth="100"
+                            ItemsSource="{Binding Pets}"
                             RotationAngle="45"
                             SelectionChanged="Carousel_OnSelectionChanged"
-                            WidthRequest="400" />
+                            WidthRequest="400">
+                            <!--<carousel:SfCarousel.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_OnTapped" />
+                            </carousel:SfCarousel.GestureRecognizers>-->
+                        </carousel:SfCarousel>
                     </Grid>
                     <Label />
-                    <Grid Padding="0,10,10,0" WidthRequest="400">
+                    <Grid
+                        Padding="0,5,5,0"
+                        HorizontalOptions="Center"
+                        WidthRequest="400">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="130" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -66,7 +112,9 @@
                             Grid.Column="0"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
-                            Text="Fitness Dashboard" />
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="Fitness     Dashboard" />
                         <buttons:SfButton
                             x:Name="SfButton1"
                             Grid.Row="0"
@@ -86,13 +134,15 @@
                             Grid.Column="1"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
                             Text="Weight Management" />
 
 
                         <buttons:SfButton
                             x:Name="SfButton2"
-                            Grid.Row="2"
-                            Grid.Column="0"
+                            Grid.Row="0"
+                            Grid.Column="2"
                             BackgroundColor="Beige"
                             BackgroundImage="reminder.png"
                             CornerRadius="20"
@@ -101,15 +151,17 @@
                             TextColor="Black"
                             WidthRequest="70" />
                         <Label
-                            Grid.Row="3"
-                            Grid.Column="0"
+                            Grid.Row="1"
+                            Grid.Column="2"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
                             Text="Reminders" />
                         <buttons:SfButton
                             x:Name="SfButton3"
                             Grid.Row="2"
-                            Grid.Column="1"
+                            Grid.Column="0"
                             BackgroundColor="Beige"
                             BackgroundImage="diary.png"
                             CornerRadius="20"
@@ -119,15 +171,17 @@
                             WidthRequest="70" />
                         <Label
                             Grid.Row="3"
-                            Grid.Column="1"
+                            Grid.Column="0"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
                             Text="Pet Diary" />
 
                         <buttons:SfButton
                             x:Name="SfButton4"
-                            Grid.Row="4"
-                            Grid.Column="0"
+                            Grid.Row="2"
+                            Grid.Column="1"
                             BackgroundColor="Beige"
                             BackgroundImage="walk.png"
                             CornerRadius="20"
@@ -136,15 +190,17 @@
                             TextColor="Black"
                             WidthRequest="70" />
                         <Label
-                            Grid.Row="5"
-                            Grid.Column="0"
+                            Grid.Row="3"
+                            Grid.Column="1"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
                             Text="Fetch Walk" />
                         <buttons:SfButton
                             x:Name="SfButton5"
-                            Grid.Row="4"
-                            Grid.Column="1"
+                            Grid.Row="2"
+                            Grid.Column="2"
                             BackgroundColor="Beige"
                             BackgroundImage="walk.png"
                             CornerRadius="20"
@@ -153,15 +209,17 @@
                             TextColor="Black"
                             WidthRequest="70" />
                         <Label
-                            Grid.Row="5"
-                            Grid.Column="1"
+                            Grid.Row="3"
+                            Grid.Column="2"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
                             Text="Walk History" />
 
                         <buttons:SfButton
-                            x:Name="SfButton6"
-                            Grid.Row="6"
+                            x:Name="btnAddInfo"
+                            Grid.Row="4"
                             Grid.Column="0"
                             BackgroundColor="Beige"
                             BackgroundImage="info.png"
@@ -173,22 +231,24 @@
                             TextColor="Black"
                             WidthRequest="70" />
                         <Label
-                            Grid.Row="7"
+                            Grid.Row="5"
                             Grid.Column="0"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
                             Text="Additional Information" />
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <StackLayout>
-                <Grid RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                    </Grid.RowDefinitions>
-                    <controls:AdControlView Grid.Row="0" BackgroundColor="Bisque" />
-                </Grid>
-            </StackLayout>
+            <!--<StackLayout VerticalOptions="End">-->
+            <Grid RowSpacing="0" VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <controls:AdControlView Grid.Row="0" BackgroundColor="Bisque" />
+            </Grid>
+            <!--</StackLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

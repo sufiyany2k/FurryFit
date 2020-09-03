@@ -81,25 +81,28 @@
                 <Label />
 
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] is insured with">
-                    <Entry />
+                    <Entry Text="{Binding Insurer.Value}" />
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Policy Number">
-                    <Entry />
+                    <Entry Text="{Binding PolicyNumber.Value}" />
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
-                    <Entry Keyboard="Telephone" />
+                    <Entry Keyboard="Telephone" Text="{Binding InsurerContactNumber.Value}" />
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Policy Expiry Date">
-                    <DatePicker MaximumDate="12/31/2030" MinimumDate="01/01/2019" />
+                    <DatePicker
+                        Date="{Binding PolicyExpiryDate.Value}"
+                        MaximumDate="12/31/2030"
+                        MinimumDate="01/01/2019" />
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet Name] Vet">
-                    <Entry />
+                    <Entry Text="{Binding Vet.Value}" />
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="Contact Number">
-                    <Entry Keyboard="Telephone" />
+                    <Entry Keyboard="Telephone" Text="{Binding VetContactNumber.Value}" />
                 </textInputLayout:SfTextInputLayout>
                 <textInputLayout:SfTextInputLayout ContainerType="Outlined" Hint="[Pet name Microchip Number]">
-                    <Entry />
+                    <Entry Text="{Binding ChipNumber.Value}" />
                 </textInputLayout:SfTextInputLayout>
                 <buttons:SfButton
                     Margin="0,16,0,0"
@@ -119,6 +122,7 @@
                     <buttons:SfButton
                         Grid.Column="0"
                         Margin="0,16,0,0"
+                        Command="{Binding SaveCommand}"
                         HorizontalOptions="Center"
                         Style="{StaticResource SfButtonStyle}"
                         Text="Save"

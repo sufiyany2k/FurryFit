@@ -19,7 +19,7 @@ namespace FurryFit
         public static bool isUserLoggedIn;
         public static NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
         public static string dbPath;
-
+        public static string imageCopyPath;
         static FurryFitDB database;
 
         public static FurryFitDB Database
@@ -48,7 +48,16 @@ namespace FurryFit
                     System.IO.Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "..", "Library", "furryFitDB.db");
             }
 
-           
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                imageCopyPath =
+                    System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Pics");
+            }
+            else if (Device.RuntimePlatform == Device.iOS)
+            {
+                imageCopyPath =
+                    System.IO.Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "..", "Pics");
+            }
 
             InitializeComponent();
             Device.SetFlags(new string[] { "RadioButton_Experimental" });

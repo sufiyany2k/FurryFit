@@ -33,7 +33,7 @@
                         <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
 
-                    <badgeView:SfBadgeView 
+                    <badgeView:SfBadgeView
                         Grid.Row="1"
                         Padding="0"
                         HeightRequest="100"
@@ -41,15 +41,18 @@
                         VerticalOptions="Center"
                         WidthRequest="100">
                         <badgeView:SfBadgeView.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_OnTapped"
-                                NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_OnTapped" />
                         </badgeView:SfBadgeView.GestureRecognizers>
                         <badgeView:SfBadgeView.Content>
 
                             <!--  ImageSource="dp.png"  -->
                             <!--  Avatar view to display the profile picture  -->
-                            <avatarView:SfAvatarView x:Name="dpPic"
+                            <!--
+                                AvatarShape="Square"
+                                AvatarSize="ExtraLarge"
+                            -->
+                            <avatarView:SfAvatarView
+                                x:Name="dpPic"
                                 Padding="0"
                                 BackgroundColor="{DynamicResource Gray-200}"
                                 BorderWidth="2"
@@ -57,11 +60,11 @@
                                 CornerRadius="50"
                                 HeightRequest="100"
                                 HorizontalOptions="Center"
-                                ImageSource="dp.png"
+                                ImageSource="dp"
                                 VerticalOptions="Center"
                                 WidthRequest="100" />
                         </badgeView:SfBadgeView.Content>
-                        
+
 
                         <!--  Badge setting to display the add icon above the profile picture  -->
                         <badgeView:SfBadgeView.BadgeSettings>

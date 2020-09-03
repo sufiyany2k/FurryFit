@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurryFit.Repository;
+using FurryFit.ViewModels.Pets;
 using FurryFit.Views.Forms;
 using Syncfusion.XForms.AvatarView;
 using Syncfusion.XForms.BadgeView;
@@ -19,6 +21,9 @@ namespace FurryFit.Views.Dashboard
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DashboardContent : ContentPage
     {
+
+        PetProfileViewModel item = new PetProfileViewModel();
+        PetProfilesVM petProfiles = new PetProfilesVM();
         public DashboardContent()
         {
             InitializeComponent();
@@ -28,6 +33,9 @@ namespace FurryFit.Views.Dashboard
             //    ItemHeight = 250
             //};
 
+            //listView.ItemsSource = await App.Database.GetNotesAsync();
+            carousel.BindingContext = petProfiles;
+            carousel.ItemsSource = petProfiles.Pets;
             ObservableCollection<SfCarouselItem> carouselItems = new ObservableCollection<SfCarouselItem>();
             //carouselItems.Add(new SfCarouselItem()
             //{
@@ -266,7 +274,7 @@ namespace FurryFit.Views.Dashboard
             //    }
             //});
 
-            carousel.ItemsSource = carouselItems;
+            //carousel.ItemsSource = carouselItems;
 
 
             //carousel.ViewMode = ViewMode.Linear;
@@ -276,19 +284,48 @@ namespace FurryFit.Views.Dashboard
 
         private void Carousel_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SfCarouselItem item = (SfCarouselItem)e.SelectedItem;
-            item.BackgroundColor=Color.DarkBlue;
-            SfBadgeView badgeView = (SfBadgeView) item.ItemContent;
-            SfAvatarView avatar = (SfAvatarView)badgeView.Content;
+             item = (PetProfileViewModel)e.SelectedItem;
+            //item.BackgroundColor=Color.DarkBlue;
+            //SfBadgeView badgeView = (SfBadgeView) item.ItemContent;
+            //SfAvatarView avatar = (SfAvatarView)badgeView.Content;
             
 
         }
 
         private async void SfButton6_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AdditionalInfoPage());
-
-            //this.Content = new AdditionalInfoPage().Content;
+            item = petProfiles.Pets[carousel.SelectedIndex];
+            await Navigation.PushModalAsync(new AdditionalInfoPage(item.Id.Value));
         }
+
+        //private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
+        //{
+        //    item = petProfiles.Pets[carousel.SelectedIndex];
+
+
+
+
+        //    Navigation.PushModalAsync(new AddPetProfilePage(item));
+        //}
+
+        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            item = petProfiles.Pets[carousel.SelectedIndex];
+
+
+
+
+            Navigation.PushModalAsync(new AddPetProfilePage(item));
+        }
+
+        //private void AvatarView_OnTapped(object sender, EventArgs e)
+        //{
+        //    item = petProfiles.Pets[(sender as SfCarousel).SelectedIndex];
+
+
+
+
+        //    Navigation.PushModalAsync(new AddPetProfilePage(item));
+        //}
     }
 }
